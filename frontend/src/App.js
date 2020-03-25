@@ -1,21 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
+
+import './global.css';
 
 // JXS (JavaScript XML)
-import Header from './Header';
+import Logon from './pages/Logon';
 
 function App() {
-  const [count, setCount ] = useState(0);
-
-  function increment(){
-    setCount(count + 1);
-  }
-
   return (
-    <div>
-      <Header>Contador: {count}</Header>
-      <button onClick={increment}>Incrementar</button>
-    </div>
-    
+    <Logon/>
   );
 }
 
