@@ -3,11 +3,11 @@ import React from 'react';
 import './global.css';
 
 // JXS (JavaScript XML)
-import Logon from './pages/Logon';
+import Routes from './routes';
 
 function App() {
   return (
-    <Logon/>
+    <Routes />
   );
 }
 
