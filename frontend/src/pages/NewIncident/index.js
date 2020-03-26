@@ -1,5 +1,5 @@
 import React, { useState } from  'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
 import api from '../../services/api';
@@ -12,6 +12,10 @@ export default function NewIncident() {
     const [description, setDescription] = useState('');
     const [value, setValue] = useState('');
 
+    const ongId = localStorage.getItem('ongId');
+
+    const history = useHistory();
+
     async function handleNewIncident(e) {
         e.preventDefault();
 
@@ -23,9 +27,10 @@ export default function NewIncident() {
         try{
             await api.post('incidents', data, {
                 headers: {
-                    Authorization: ongId
+                    Authorization: ongId,
                 }
             })
+            history.push('/profile');
         } catch(err){
             alert('Erro ao cadastrar o caso, tente novamente');
         }
@@ -43,7 +48,7 @@ export default function NewIncident() {
                         Voltar para Home
                     </Link>
                 </section>
-                <form>
+                <form onSubmit={handleNewIncident}>
                     <input 
                         placeholder="Título do caso" 
                         value={title}
