@@ -27,12 +27,12 @@ routes.get('/incidents', celebrate({
         page: Joi.number(),
     })
 }), IncidentsController.index);
-//
-routes.post('/incidents', celebrate({
+/*celebrate({
     [Segments.PARAMS]: Joi.object().keys({
         id: Joi.string().required().length(8),
     })
-}), IncidentsController.create);
+}), */
+routes.post('/incidents', IncidentsController.create);
 //
 routes.delete('/incidents/:id', celebrate({
     [Segments.PARAMS]: Joi.object().keys({
