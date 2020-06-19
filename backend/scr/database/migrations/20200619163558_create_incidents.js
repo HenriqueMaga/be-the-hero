@@ -1,5 +1,5 @@
 
-exports.up = function(knex) {
+exports.up = function(knex, Promise) {
     return knex.schema.createTable('incidents', function(table){
         table.increments();
 
@@ -10,9 +10,10 @@ exports.up = function(knex) {
         table.string('ong_id').notNullable();
 
         table.foreign('ong_id').references('id').inTable('ongs');
+        table.foreign('user_id').references('id').inTable('users');
     });
 };
 
-exports.down = function(knex) {
+exports.down = function(knex, Promise) {
     return knex.schema.dropTable('incidents');
 };

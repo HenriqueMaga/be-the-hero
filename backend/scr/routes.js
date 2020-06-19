@@ -5,12 +5,15 @@ const OngController = require('./controllers/OngController');
 const IncidentsController = require('./controllers/IncidentsController');
 const ProfileController = require('./controllers/ProfileController');
 const SessionController = require('./controllers/SessionController');
+const UserController = require('./controllers/UserController');
 
 const routes = express.Router();
 
 routes.post('/sessions', SessionController.create);
 
 routes.get('/ongs', OngController.index);
+
+routes.get('/users', UserController.index);
 
 routes.post('/ongs', celebrate({
     [Segments.BODY]: Joi.object().keys({
@@ -46,5 +49,17 @@ routes.get('/profile', celebrate({
         authorization: Joi.string().required()
     }).unknown(),
 }), ProfileController.index);
+
+//
+
+routes.post('/users', celebrate({
+    [Segments.BODY]: Joi.object().keys({
+        username: Joi.string().required(),
+        email: Joi.string().required().email(),
+        password: Joi.string().required(),
+        city: Joi.string().required(),
+        uf: Joi.string().required().length(2)
+    })
+}), UserController.create);
 
 module.exports = routes;
