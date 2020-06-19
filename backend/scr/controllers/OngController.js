@@ -11,17 +11,21 @@ module.exports = {
         const { name, email, password, whatsapp, city, uf } = request.body;
     
         const id = generateUniqueId();
-    
-        await connection('ongs').insert({
-            id,
-            name,
-            email,
-            password,
-            whatsapp,
-            city,
-            uf
-        });
-    
-        return response.json({ id });
+        
+        try{
+            await connection('ongs').insert({
+                id,
+                name,
+                email,
+                password,
+                whatsapp,
+                city,
+                uf
+            });
+        
+            return response.json({ id });
+        } catch (err){
+            return response.status(400).json({ error: `Error ${err}` });
+        }
     }
 };

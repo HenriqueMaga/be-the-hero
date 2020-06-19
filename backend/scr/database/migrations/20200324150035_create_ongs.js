@@ -1,9 +1,9 @@
 
-exports.up = function(knex) {
+exports.up = function(knex, Promise) {
     return knex.schema.createTable('ongs', function(table) {
         table.string('id').primary();
         table.string('name').notNullable();
-        table.string('email').notNullable();
+        table.string('email').notNullable().primary().unique();
         table.string('password').notNullable();
         table.string('whatsapp').notNullable();
         table.string('city').notNullable();
@@ -12,6 +12,6 @@ exports.up = function(knex) {
 };
 
 
-exports.down = function(knex) {
+exports.down = function(knex, Promise) {
     return knex.schema.dropTable('ongs');
 };
