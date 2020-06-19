@@ -11,6 +11,7 @@ export default function Register() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
+    const [password, setPassword] = useState('');
     const [city, setCity] = useState('');
     const [uf, setUf] = useState('');
 
@@ -23,6 +24,7 @@ export default function Register() {
             name,
             email,
             whatsapp,
+            password,
             city,
             uf,
         };
@@ -58,6 +60,11 @@ export default function Register() {
                         placeholder="E-mail" type="email"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
+                    />
+                    <input
+                        placeholder="Senha" type="password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
                     />
                     <input 
                         placeholder="WhatsApp"

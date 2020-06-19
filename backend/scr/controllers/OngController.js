@@ -8,7 +8,7 @@ module.exports = {
     },
     
     async create(request, response) {
-        const { name, email, whatsapp, city, uf } = request.body;
+        const { name, email, password, whatsapp, city, uf } = request.body;
     
         const id = generateUniqueId();
     
@@ -16,6 +16,7 @@ module.exports = {
             id,
             name,
             email,
+            password,
             whatsapp,
             city,
             uf
