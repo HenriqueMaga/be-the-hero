@@ -8,6 +8,7 @@ exports.up = function(knex, Promise) {
         table.decimal('value').notNullable();
 
         table.string('ong_id').notNullable();
+        table.string('user_id');
 
         table.foreign('ong_id').references('id').inTable('ongs');
         table.foreign('user_id').references('id').inTable('users');
@@ -15,5 +16,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-    return knex.schema.dropTable('incidents');
+    return knex.schema.dropTableIfExists('incidents');
 };
