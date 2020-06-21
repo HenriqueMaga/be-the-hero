@@ -12,6 +12,7 @@ module.exports = {
         const { username, password, email, city, uf } = request.body;
         const id = generateUniqueId();
 
+        console.log(username, password, email, city, uf);
         try{
             await connection('users').insert({
                 id,
@@ -29,25 +30,29 @@ module.exports = {
     },
 
     async login(request, response) {
-        const {params} = request.body;
-
-        const username = params.username;
-        const password = params.password;
+        console.log(request.body);
+        const {username, password} = request.body;
 
         let user;
         console.log(username, password);
+        
+        user = await connection('users')
+            .where('username', username)
+            .andWhere('password', password)
+            .select('username','id')
+            .first();
+        
+        const userWithoutPassword = await connection('users')
+            .where('username', username)
+            .select('username','id')
+            .first();
 
-        try{
-            user = await connection('users')
-                .where('username', username)
-                .andWhere('password', password)
-                .select('username','id')
-                .first();
-            
+        if(user){
             return response.json(user);
-
-        }catch (err){
-            return response.status(400).json({ error: `Error ${err}` });
+        } else if (!user && userWithoutPassword) {
+            return response.status(401).json({ error: `Senha incorreta` });
+        }else{
+            return response.status(404).json({ error: `Usuário não encontrado` });
         }
     }
 }
