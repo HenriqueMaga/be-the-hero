@@ -8,10 +8,10 @@ module.exports = {
 
         try{
             ong = await connection('ongs')
-            .where('email', email)
-            .andWhere('password', password)
-            .select('name','id')
-            .first();
+                .where('email', email)
+                .andWhere('password', password)
+                .select('name','id')
+                .first();
         }catch (err){
             return response.status(400).json({ error: `Error ${err}` });
         }
