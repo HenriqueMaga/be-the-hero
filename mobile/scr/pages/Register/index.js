@@ -63,7 +63,7 @@ export default function Register() {
             <TextInput style={styles.input} placeholder="Cidade..." onChangeText={city => setCity(city)}></TextInput>
 
             <Text style={styles.inputText}>Digite o nome do seu Estado</Text>
-            <TextInput style={styles.input} placeholder="Estado..." onChangeText={uf => setUf(uf)}></TextInput>
+            <TextInput style={styles.input} placeholder="UF..." onChangeText={uf => setUf(uf)}></TextInput>
 
             <View style={styles.actions}>
                 <TouchableOpacity style={styles.action} onPress={() => userRegister()}>
