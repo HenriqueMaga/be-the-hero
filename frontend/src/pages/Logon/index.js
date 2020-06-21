@@ -28,8 +28,8 @@ export default function Logon(){
             localStorage.setItem('ongName', response.data.name);
 
             history.push('/profile');
-        } catch {
-            alert('Falha no login, tente novamente');
+        } catch (err) {
+            alert(err.message);
         }
     }
 

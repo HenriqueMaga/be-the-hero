@@ -5,17 +5,17 @@ module.exports = {
         const {email, password} = request.body;
 
         let ong = '';
-
-        try{
-            ong = await connection('ongs')
-                .where('email', email)
-                .andWhere('password', password)
-                .select('name','id')
-                .first();
-        }catch (err){
-            return response.status(400).json({ error: `Error ${err}` });
-        }
         
-        return response.json(ong);
+        ong = await connection('ongs')
+            .where('email', email)
+            .andWhere('password', password)
+            .select('name','id')
+            .first();
+
+        if(ong){
+            return response.json(ong);
+        }else{
+            return response.status(400).json({ error: `Ong não cadastrada` });
+        }
     }
 }
