@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { View, FlatList, Image, Text, TouchableOpacity } from 'react-native';
 
 import logoImg from '../../assets/logo.png'
@@ -15,6 +15,9 @@ export default function Incidents() {
     const [loading, setLoading] = useState(false);
 
     const navigation = useNavigation();
+    const route = useRoute();
+
+    const loggedUser = route.params.username;
 
     function navigateToDetail(incident){
         navigation.navigate('Detail', { incident });
@@ -49,9 +52,14 @@ export default function Incidents() {
         <View style={styles.container}>
             <View style={styles.header}>
                 <Image source={logoImg} />
-                <Text style={styles.headerText}>
-                    Total de novos <Text style={styles.headerTextBold}>{total} Casos.</Text>
-                </Text>
+                <View style={styles.list}>
+                    <Text style={styles.headerText}>
+                    Bem-vindo <Text style={styles.headerTextBold}>{loggedUser}</Text>
+                    </Text>
+                    <Text style={styles.headerText}>
+                        Total de novos <Text style={styles.headerTextBold}>{total} Casos.</Text>
+                    </Text>
+                </View>
             </View>
             <Text style={styles.title}>Bem-vindo!</Text>
             <Text style={styles.description}>Escolha um dos casos abaixo e salve o dia</Text>

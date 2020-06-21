@@ -1,23 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { Feather } from '@expo/vector-icons';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, TextInput, Button, Image, Text, TouchableOpacity } from 'react-native';
+import { View, TextInput, Image, Text, TouchableOpacity } from 'react-native';
 
 import logoImg from '../../assets/logo.png'
 
 import styles from './style';
 import api from '../../services/api';
 
-export default function Incidents() {
-    const [incidents, setIncidents] = useState([]);
-    const [total, setTotal] = useState(0); 
-    const [page, setPage] = useState(1);
-    const [loading, setLoading] = useState(false);
+export default function Login() {
+    let [username, setUsername] = useState();
+    let [password, setPassword] = useState();
+
+    async function userLogin () {
+        
+        const response = await api.post('userlogin', {
+            params: { username, password }
+        });
+        navigateToIncidents(username);
+    }
 
     const navigation = useNavigation();
 
-    function navigateToIncidents(incident){
-        navigation.navigate('Incidents');
+    function navigateToIncidents(username){
+        navigation.navigate('Incidents', {username});
     }
 
     return (
@@ -28,11 +33,11 @@ export default function Incidents() {
             <Text style={styles.title}>Bem-vindo!</Text>
             <Text style={styles.description}>Faça seu Login</Text>
             
-            <TextInput style={styles.input} placeholder="Digite seu Nome de Usuário..."></TextInput>
-            <TextInput style={styles.input} placeholder="Digite sua senha..." secureTextEntry={true} ></TextInput>
+            <TextInput style={styles.input} placeholder="Digite seu Nome de Usuário..." onChangeText={username => setUsername(username)}></TextInput>
+            <TextInput style={styles.input} placeholder="Digite sua senha..." secureTextEntry={true} onChangeText={password => setPassword(password)}></TextInput>
 
             <View style={styles.actions}>
-                <TouchableOpacity style={styles.action} onPress={() => {}}>
+                <TouchableOpacity style={styles.action} onPress={() => userLogin()}>
                     <Text style={styles.actionText}>Login</Text>
                 </TouchableOpacity>
             </View>

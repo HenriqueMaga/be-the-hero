@@ -6,9 +6,10 @@ export default StyleSheet.create({
         flex: 1,
         paddingHorizontal: 24,
         paddingTop: Constants.statusBarHeight + 20,
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center'
     },
-
+    
     header: {
         flexDirection: 'row',
         justifyContent: 'center',
@@ -37,17 +38,17 @@ export default StyleSheet.create({
     },
 
     input: {
-        padding: 24,
+        padding: 18,
         borderRadius: 8,
         backgroundColor: '#FFF',
         marginBottom: 16,
-        fontSize: 25,
+        fontSize: 20,
         color: '#737380',
         width: '100%',
         
     },
     actions: {
-        marginTop: 16,
+        marginTop: 30,
         flexDirection: 'row',
         justifyContent: 'space-evenly'
     },
@@ -57,7 +58,7 @@ export default StyleSheet.create({
         fontWeight: '700',
         marginTop: 5,
         textAlign: 'center',
-        fontSize: 18,
+        fontSize: 15,
         lineHeight: 60,
         borderRadius: 8,
         backgroundColor: '#e02041',
@@ -76,31 +77,6 @@ export default StyleSheet.create({
     backText: {
         color: '#41414d',
         fontSize: 20,
-        fontWeight: 'bold'
-    },
-
-    incidentProperty: {
-        fontSize: 14,
-        color: '#41414d',
-        fontWeight: 'bold'
-    },
-
-    incidentValue: {
-        marginTop: 8,
-        fontSize: 15,
-        marginBottom: 24,
-        color: '#737380'
-    },
-
-    detailsButton: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-    },
-
-    detailsButtonText: {
-        color: '#e02041',
-        fontSize: 15,
         fontWeight: 'bold'
     }
 });

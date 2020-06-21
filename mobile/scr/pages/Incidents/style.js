@@ -14,6 +14,10 @@ export default StyleSheet.create({
         alignItems: 'center'
     },
 
+    list: {
+        alignItems: 'flex-end'
+    },
+
     headerText: {
         fontSize: 15,
         color: '#737380'
