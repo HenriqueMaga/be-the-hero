@@ -12,17 +12,26 @@ export default function Login() {
     let [password, setPassword] = useState();
 
     async function userLogin () {
+        try{
+            const response = await api.post('userlogin', {
+                username,
+                password
+            });
+            navigateToIncidents(username);
+        } catch (err) {
+            alert(err.message);
+        }
         
-        const response = await api.post('userlogin', {
-            params: { username, password }
-        });
-        navigateToIncidents(username);
     }
 
     const navigation = useNavigation();
 
     function navigateToIncidents(username){
         navigation.navigate('Incidents', {username});
+    }
+
+    function navigateToRegister(){
+        navigation.navigate('Register');
     }
 
     return (
@@ -44,7 +53,7 @@ export default function Login() {
 
             <View style={styles.actions}>
                 <TouchableOpacity>
-                    <Text style={styles.backText}>Não tenho Cadastro</Text>
+                    <Text style={styles.backText} onPress={() => navigateToRegister()}>Não tenho Cadastro</Text>
                 </TouchableOpacity>
             </View>
 
